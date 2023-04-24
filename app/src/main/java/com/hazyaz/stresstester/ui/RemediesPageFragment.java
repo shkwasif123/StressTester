@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -23,11 +24,10 @@ import com.hazyaz.stresstester.DataClass;
 import com.hazyaz.stresstester.databinding.FragmentRemediesPageBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RemediesPageFragment extends Fragment {
     private FragmentRemediesPageBinding _binding;
-    ArrayList<String>recommendedBooks = new ArrayList<String>();
+    final ArrayList<String>recommendedBooks = new ArrayList<>();
 
     private FragmentRemediesPageBinding getBinding() {
         return _binding;
@@ -35,12 +35,12 @@ public class RemediesPageFragment extends Fragment {
 
     @SuppressLint("Range")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout and bind to the _binding
         _binding = FragmentRemediesPageBinding.inflate(inflater, container, false);
 
-        getBinding().Call.setOnClickListener(this::Call);
+        getBinding().Call.setOnClickListener(view -> Call());
 
 //list of books
         recommendedBooks.add(" Be Calm: Proven Techniques to Stop Anxiety Now \n – Jill Weber. ");
@@ -109,7 +109,7 @@ public class RemediesPageFragment extends Fragment {
         return index;
     }
 
-    public void Call(View view) {
+    public void Call() {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:7738858013"));
         startActivity(intent);

@@ -29,7 +29,6 @@ public class HomePageFragment extends Fragment {
     // assign the _binding variable initially to null and
     // also when the view is destroyed again it has to be set to null
     private FragmentHomePageBinding binding = null;
-    private float maxscore = 136.8f; // hardcoded 9.12*15
     private float score = 0f;
     private int Qn = 0;
 
@@ -46,64 +45,36 @@ public class HomePageFragment extends Fragment {
         // inflate the layout and bind to the _binding
         binding = FragmentHomePageBinding.inflate(inflater, container, false);
 
-        binding.test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.initial.setVisibility(View.GONE);
-                binding.result.setVisibility(View.GONE);
-                binding.main.setVisibility(View.VISIBLE);
-            }
+        binding.test.setOnClickListener(v -> {
+            binding.initial.setVisibility(View.GONE);
+            binding.result.setVisibility(View.GONE);
+            binding.main.setVisibility(View.VISIBLE);
         });
-        binding.share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sharing(v);
-            }
-        });
-        binding.CallNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Call(v);
-            }
-        });
+        binding.share.setOnClickListener(v -> sharing());
+        binding.CallNow.setOnClickListener(v -> Call());
 
         updateQuestion();
 
-        binding.button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score += 9.12f;
-                updateQuestion();
-            }
+        binding.button1.setOnClickListener(v -> {
+            score += 9.12f;
+            updateQuestion();
         });
-        binding.button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score += 7.62f;
-                updateQuestion();
-            }
+        binding.button2.setOnClickListener(v -> {
+            score += 7.62f;
+            updateQuestion();
         });
 
-        binding.button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score += 5.87f;
-                updateQuestion();
-            }
+        binding.button3.setOnClickListener(v -> {
+            score += 5.87f;
+            updateQuestion();
         });
-        binding.button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score += 3.87f;
-                updateQuestion();
-            }
+        binding.button4.setOnClickListener(v -> {
+            score += 3.87f;
+            updateQuestion();
         });
-        binding.button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                score += 1.62f;
-                updateQuestion();
-            }
+        binding.button5.setOnClickListener(v -> {
+            score += 1.62f;
+            updateQuestion();
         });
 
         return binding.getRoot();
@@ -133,6 +104,8 @@ public class HomePageFragment extends Fragment {
             cursor.close();
             //extracting the date information from calender
             LocalDate date=LocalDate.now();
+            // hardcoded 9.12*15
+            float maxscore = 136.8f;
             int percentageStress = Math.round(100f - (score / maxscore) * 100f);
             percentageStress = Math.max(percentageStress, 0);
             int percentage=percentageStress;
@@ -157,14 +130,10 @@ public class HomePageFragment extends Fragment {
             }
             if(percentageStress >= 20 && percentageStress <= 50){
                 binding.watchVideo.setVisibility(View.VISIBLE);
-                binding.watchVideo.setOnClickListener(v -> {
-                    redirectToVideo(dataClass.getVideoUrl(0));
-                });
+                binding.watchVideo.setOnClickListener(v -> redirectToVideo(dataClass.getVideoUrl(0)));
             } else if (percentageStress > 50 && percentageStress <= 70) {
                 binding.watchVideo.setVisibility(View.VISIBLE);
-                binding.watchVideo.setOnClickListener(v -> {
-                    redirectToVideo(dataClass.getVideoUrl(1));
-                });
+                binding.watchVideo.setOnClickListener(v -> redirectToVideo(dataClass.getVideoUrl(1)));
 
 
             }
@@ -184,7 +153,7 @@ public class HomePageFragment extends Fragment {
 
     }
 
-    public void sharing(View view) {
+    public void sharing() {
         DataClass dataClass = new DataClass();
         Intent sharingIntent = new Intent("android.intent.action.SEND");
         sharingIntent.setType("text/plain");
@@ -197,17 +166,14 @@ public class HomePageFragment extends Fragment {
     private void Animation(int number) {
         ValueAnimator animator = ValueAnimator.ofInt(0, number);
         animator.setDuration(6000L);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                binding.percent.setText(animation.getAnimatedValue().toString() + " %");
-                binding.progressBar.setProgress((int) animation.getAnimatedValue());
-            }
+        animator.addUpdateListener(animation -> {
+            binding.percent.setText(animation.getAnimatedValue().toString() + " %");
+            binding.progressBar.setProgress((int) animation.getAnimatedValue());
         });
         animator.start();
     }
 
-    public void Call(View view) {
+    public void Call() {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:7738858013"));
         startActivity(intent);

@@ -6,16 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.hazyaz.stresstester.DataClass;
 import com.hazyaz.stresstester.EditProfile;
@@ -24,38 +21,27 @@ import com.hazyaz.stresstester.SignIn;
 import com.hazyaz.stresstester.SignedInUser;
 import com.hazyaz.stresstester.databinding.FragmentProfilePageBinding;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProfilePageFragment extends Fragment {
     private FragmentProfilePageBinding binding;
-    DataClass dataClass=new DataClass();
+    final DataClass dataClass=new DataClass();
     TextView newBtn;
 
 
 
     @SuppressLint({"SuspiciousIndentation", "Range"})
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfilePageBinding.inflate(inflater, container, false);
 
-        binding.editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               startActivity(new Intent(requireContext(), EditProfile.class));
+        binding.editProfile.setOnClickListener(view -> startActivity(new Intent(requireContext(), EditProfile.class)));
+        binding.signOutBtn.setOnClickListener(view -> {
+            SignedInUser db = new SignedInUser(requireContext(), null);
+            db.delete();
+            startActivity(new Intent(requireContext(), SignIn.class));
+            if (getActivity() != null) {
+                getActivity().finish();
             }
-        });
-        binding.signOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignedInUser db = new SignedInUser(requireContext(), null);
-                db.delete();
-                startActivity(new Intent(requireContext(), SignIn.class));
-                if (getActivity() != null) {
-                    getActivity().finish();
-                }
-                Toast.makeText(requireContext(), "You are Signed Out", Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(requireContext(), "You are Signed Out", Toast.LENGTH_SHORT).show();
         });
 
         binding.email.setText("E-mail : " + dataClass.getPersonEmail());

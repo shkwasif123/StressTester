@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,7 @@ import java.time.LocalDate;
 public class RecordPageFragment extends Fragment {
 
     private FragmentRecordPageBinding binding;
-    private String level;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
@@ -43,55 +42,43 @@ public class RecordPageFragment extends Fragment {
         @SuppressLint("Range") String email=cursor1.getString(cursor1.getColumnIndex(SignedInUser.EMAIL_COL));
 
         cursor1.close();
-        binding.chooseDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.calenderHolder.setVisibility(View.VISIBLE);
-            }
-        });
-        binding.SHOWALL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.container.removeAllViews();
-                    showAll(email);
-                binding.calenderHolder.setVisibility(View.GONE);
-            }
+        binding.chooseDate.setOnClickListener(v -> binding.calenderHolder.setVisibility(View.VISIBLE));
+        binding.SHOWALL.setOnClickListener(v -> {
+            binding.container.removeAllViews();
+                showAll(email);
+            binding.calenderHolder.setVisibility(View.GONE);
         });
         showAll(email);
 
         //filtering
 
-        binding.calenderView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @SuppressLint("Range")
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                String date = year + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
-                binding.container.removeAllViews();
-                StoreRecord db = new StoreRecord(requireContext(), null);
-                Cursor cursor = db.getName();
-                if (cursor.moveToFirst()) {
-                    cursor.moveToLast();
-                    @SuppressLint("Range")
-                    LocalDate dateObj = LocalDate.parse(cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)));
-                    String printDate = dateObj.getDayOfMonth() + " " + dateObj.getMonth() + " " + dateObj.getYear();
-                    @SuppressLint("Range") String level = cursor.getString(cursor.getColumnIndex(StoreRecord.Stress_level));
-                    @SuppressLint("Range") boolean isPresent = cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)).equals(date);
-                    if (isPresent && cursor.getString(cursor.getColumnIndex(StoreRecord.Email_COL)).equals(email)) {
+        binding.calenderView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            String date = year + "-" + String.format("%02d", month + 1) + "-" + String.format("%02d", dayOfMonth);
+            binding.container.removeAllViews();
+            StoreRecord db = new StoreRecord(requireContext(), null);
+            Cursor cursor = db.getName();
+            if (cursor.moveToFirst()) {
+                cursor.moveToLast();
+                @SuppressLint("Range")
+                LocalDate dateObj = LocalDate.parse(cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)));
+                String printDate = dateObj.getDayOfMonth() + " " + dateObj.getMonth() + " " + dateObj.getYear();
+                @SuppressLint("Range") String level = cursor.getString(cursor.getColumnIndex(StoreRecord.Stress_level));
+                @SuppressLint("Range") boolean isPresent = cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)).equals(date);
+                if (isPresent && cursor.getString(cursor.getColumnIndex(StoreRecord.Email_COL)).equals(email)) {
+                    binding.msg.setVisibility(View.GONE);
+                    add(level, printDate);
+                }
+                while (cursor.moveToPrevious()) {
+                    if (cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)).equals(date) && cursor.getString(cursor.getColumnIndex(StoreRecord.Email_COL)).equals(email)) {
+                        LocalDate dateObj2 = LocalDate.parse(cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)));
+                        String printDate2 = dateObj2.getDayOfMonth() + " " + dateObj2.getMonth() + " " + dateObj2.getYear();
+                        String level2 = cursor.getString(cursor.getColumnIndex(StoreRecord.Stress_level));
                         binding.msg.setVisibility(View.GONE);
-                        add(level, printDate);
-                    }
-                    while (cursor.moveToPrevious()) {
-                        if (cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)).equals(date) && cursor.getString(cursor.getColumnIndex(StoreRecord.Email_COL)).equals(email)) {
-                            LocalDate dateObj2 = LocalDate.parse(cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)));
-                            String printDate2 = dateObj2.getDayOfMonth() + " " + dateObj2.getMonth() + " " + dateObj2.getYear();
-                            String level2 = cursor.getString(cursor.getColumnIndex(StoreRecord.Stress_level));
-                            binding.msg.setVisibility(View.GONE);
-                            add(level2, printDate2);
-                        }
+                        add(level2, printDate2);
                     }
                 }
-                cursor.close();
             }
+            cursor.close();
         });
 
         return binding.getRoot();
@@ -144,6 +131,7 @@ public class RecordPageFragment extends Fragment {
         Cursor cursor = db.getName();
         if (cursor != null && cursor.moveToFirst()) {
             cursor.moveToLast();
+            String level;
             if (cursor.getString(cursor.getColumnIndex(StoreRecord.Email_COL)).equals(email)) {
                 LocalDate date = LocalDate.parse(cursor.getString(cursor.getColumnIndex(StoreRecord.date_Col)));
                 String printDate = date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();

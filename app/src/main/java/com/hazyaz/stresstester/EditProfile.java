@@ -26,10 +26,10 @@ public class EditProfile extends AppCompatActivity {
     private boolean readClicked = true;
     private boolean travelClicked = true;
     private String interest = "";
-    DBHelper dbHelper=new DBHelper(this,null);
-    DataClass dataClass=new DataClass();
+    final DBHelper dbHelper=new DBHelper(this,null);
+    final DataClass dataClass=new DataClass();
 
-    SignedInUser signedInUser=new SignedInUser(this,null);
+    final SignedInUser signedInUser=new SignedInUser(this,null);
     private final ArrayList<String> interestList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {

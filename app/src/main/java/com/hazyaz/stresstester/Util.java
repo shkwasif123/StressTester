@@ -3,13 +3,13 @@ package com.hazyaz.stresstester;
 public class Util {
 
 
-    public String mQuestion;
-    public String mChoice1;
-    public String mChoice2;
-    public String mChoice3;
-    public String mChoice4;
-    public String mChoice5;
-    public int mQuestionCounter;
+    public final String mQuestion;
+    public final String mChoice1;
+    public final String mChoice2;
+    public final String mChoice3;
+    public final String mChoice4;
+    public final String mChoice5;
+    public final int mQuestionCounter;
 
 
     public Util(String q, String c1, String c2, String c3, String c4, String c5,int qC) {
