@@ -14,17 +14,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.hazyaz.stresstester.EditProfile;
-import com.hazyaz.stresstester.R;
 import com.hazyaz.stresstester.SignedInUser;
 import com.hazyaz.stresstester.StoreRecord;
 import com.hazyaz.stresstester.Util;
 import com.hazyaz.stresstester.DataClass;
 import com.hazyaz.stresstester.databinding.FragmentHomePageBinding;
-import com.hazyaz.stresstester.questions;
+import com.hazyaz.stresstester.Questions;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -115,7 +112,7 @@ public class HomePageFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void updateQuestion() {
         if (Qn <= 14) {
-            questions q = new questions();
+            Questions q = new Questions();
             ArrayList<Util> y = q.allData();
             binding.question.setText(y.get(Qn).getmQuestion());
             binding.button1.setText(y.get(Qn).getmChoice1());

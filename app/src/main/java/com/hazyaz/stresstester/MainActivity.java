@@ -27,19 +27,18 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new HomePageFragment());
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationBar);
         bottomNav.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    loadFragment(new HomePageFragment());
-                    return true;
-                case R.id.nav_records:
-                    loadFragment(new RecordPageFragment());
-                    return true;
-                case R.id.nav_remedies:
-                    loadFragment(new RemediesPageFragment());
-                    return true;
-                default:
-                    loadFragment(new ProfilePageFragment());
-                    return true;
+            if (item.getItemId() == R.id.nav_home) {
+                loadFragment(new HomePageFragment());
+                return true;
+            } else if (item.getItemId() == R.id.nav_records) {
+                loadFragment(new RecordPageFragment());
+                return true;
+            } else if (item.getItemId() == R.id.nav_remedies) {
+                loadFragment(new RemediesPageFragment());
+                return true;
+            } else {
+                loadFragment(new ProfilePageFragment());
+                return true;
             }
         });
 

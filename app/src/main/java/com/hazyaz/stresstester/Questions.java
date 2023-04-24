@@ -1,7 +1,7 @@
 package com.hazyaz.stresstester;
 import java.util.ArrayList;
 
-public class questions {
+public class Questions {
     private final ArrayList<Util> questionSet1 = new ArrayList<>();
 
     public ArrayList<Util> allData() {

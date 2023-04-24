@@ -139,19 +139,11 @@ public class CompleteProfile extends AppCompatActivity {
         if (view instanceof RadioButton) {
             boolean checked = ((RadioButton) view).isChecked();
 
-            switch (view.getId()) {
-                case R.id.m:
-                    if (checked) {
-                        gender = "Male";
-                    }
-                    break;
-                case R.id.f:
-                    if (checked) {
-                        gender = "Female";
-                    }
-                    break;
+            if (view.getId() == R.id.m && checked) {
+                gender = "Male";
+            } else if (view.getId() == R.id.f && checked) {
+                gender = "Female";
             }
         }
     }
-
 }
