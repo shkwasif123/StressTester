@@ -1,0 +1,30 @@
+<resources>
+    <string name="stress_test">STRESS TESTER</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="app_name">Reduce Stress</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="signIn_button_text">LOGIN</string>
+    <string name="not_registered">Not Registered? Signup</string>
+    <string name="connect_with_others"><ul><li>Connect with others</li></ul></string>
+    <string name="meditation_and_massage"><ul><li>Meditation</li><li>Massage</li></ul></string>
+    <string name="signUp_button_text">Next</string>
+    <string name="tv_msg">Connect Via Email</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_showing_first_test_then_get">Go to Home and test your stress level to get proper remedies.</string>
+    <string name="the_remedy_is_based_on_your_latest_diagnosis">The remedy is based on your latest diagnosis.</string>
+    <string name="feeling_str">FEELING STRESSED?</string>
+    <string name="try_our_fre">Try our Free stress checker,
+we will ask you some question
+and based on that you will be
+shown the the percentage of
+stress you have.\n\nDon’t worry its completely safe,
+you will also get remedies based
+on your stress</string>
+    <string name="your_stress">YOUR STRESS IS</string>
+    <string name="past_record">PAST RECORDS</string>
+    <string name="profile">PROFILE</string>
+    <string name="gaming">Gaming</string>
+</resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="stress_test">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="login">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+    <style name="button_style">
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/inter_font</item>
+        <item name="backgroundTint">#FFFFFF</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="text_style">
+        <item name="fontFamily">@font/inter_font</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="edit_text_style">
+        <item name="fontFamily">@font/inter_font</item>
+        <item name="android:textSize">14sp</item>
+        <item name="boxStrokeColor">@color/teal_200</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="text_heading_style">
+        <item name="fontFamily">@font/cabin_font</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="questions_displayed">
+        <item name="fontFamily">@font/cabin_font</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="interest_btn">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/cabin_font</item>
+        <item name="backgroundTint">#FFFFFF</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="date_style">
+        <item name="fontFamily">@font/inter_font</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="stress_level_style">
+        <item name="fontFamily">@font/inter_font</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+    <style name="interest_txt">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/cabin_font</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+</resources>

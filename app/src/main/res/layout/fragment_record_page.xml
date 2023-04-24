@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.RecordPageFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_bg"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/past_record"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="52dp"
+            android:text="@string/past_record"
+            style="@style/text_heading_style"
+            android:gravity="top"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/SHOW_ALL"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="All records"
+                style="@style/button_style"
+                android:layout_weight="0.5"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/choose_date"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Select Date"
+                style="@style/button_style"
+                android:layout_weight="0.5" />
+
+        </LinearLayout>
+        <ScrollView
+            android:id="@+id/calenderHolder"
+            android:layout_width="match_parent"
+            android:layout_height="298dp"
+            android:layout_marginBottom="10dp">
+        <CalendarView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="40dp"
+            android:id="@+id/calenderView"/></ScrollView>
+
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="100dp"
+                android:text="No Records Yet"
+                style="@style/text_style"
+                android:gravity="center"
+                android:textSize="24sp" />
+
+        </LinearLayout></ScrollView></LinearLayout>
